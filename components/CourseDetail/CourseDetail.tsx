@@ -23,17 +23,6 @@ const CourseDetail = () => {
 
     const [tabs, setTabs] = useState([]);
 
-
-
-    ///////////////////////////////
-
-    const [contentType, setcontentType] = useState('');
-
-    const [ct, setct] = useState(false);
-const tt='Event';
-
-    //////////////////////////////////////
-
     const CourseQuery = gql`
         query CourseGroupBySlug($slug: Slug!) {
             CourseGroupBySlug(slug: $slug) {
@@ -48,10 +37,6 @@ const tt='Event';
                     id
                     body
                     label
-                }
-                contentType{
-                    label
-                   
                 }
             }
         }
@@ -85,32 +70,15 @@ const tt='Event';
                         .currency[0]
                 );
             }
-
-            setcontentType(courseData.CourseGroupBySlug?.contentType.label);
-
-           
-
-
         }, []);
-
-        console.log( contentType);
-
     } else if (courseError) {
         console.log('Error', courseError);
     }
 
     return (
         <>
-
-
             <Cart checkoutUrl="/orders" currencyCode={currencyCode}>
                 <Header />
-
-              
-
-               {contentType.toString()=='Course' &&  <Header />}
-
-               {contentType.toString()!='Course' && title }
 
                 <div className="grid grid-cols-3 gap-10 py-4 px-4">
                     <div className="col-span-3 md:col-span-2">
